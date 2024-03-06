@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html{
+        background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+    }
+
+    body{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(
+            to right top,
+            #051937,
+            #004d7a,
+            #008793,
+            #00bf72,
+            #a8eb12
+        );
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    section{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3.2rem;
+    }
+
+    .btn{
+        display: flex;
+        gap: 2.2rem;
+    }
+
+    button{
+        padding: 0.6rem 2.4rem 0.6rem 2.4rem;
+        border-radius: 20px;
+    }
+
+    h2{
+        width: fit-content;
+        text-transform: uppercase;
+        font-size: 100%;
+        color: #fff;
+        margin: 2rem 1rem 2rem 8.3rem;
+        cursor: pointer;
+        &:hover{
+            color: black;
+        }
+    }
+
+    #myButton{
+        box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+        background-color: rgb(38, 3, 76);
+        color: #fff;
+    }
+   
+    #myButton2{
+        background-color: rgb(168, 235, 18);
+        color: rgb(34, 34, 34);
+        box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    }
+    
+    .copyCode{
+        max-width: 19rem;
+        min-height: 3rem;
+        border-left: 3px solid #fff;
+        color: #fff;
+        letter-spacing: 0.1px;
+        line-height: 1.5rem;
+        padding: 0.8rem;
+        border-radius: 5px;
+        box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+    }
+
+</style>
+
+
+<body>
+    <section>
+        <div class="btn">
+            <button id="myButton">#051937</button>
+            <button id="myButton2">#008793</button>
+        </div>
+        <h2 id="heading">Copy</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198))
+        </div>
+    </section>
+
+    <script>
+        let btn1=document.getElementById('myButton');
+        let btn2=document.getElementById('myButton2');
+        let copyCode=document.querySelector('.copyCode');
+        let heading=document.getElementById("heading");
+        let rgb1="#004773";
+        let rgb2="#54d542";
+
+        const hexValues=()=>{
+            let myHexValues="0123456789abcdef";
+            let colors="#";
+            for(let i=0;i<6;i++){
+                colors+=myHexValues[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+        };
+            
+        const handleButton1=()=>{
+           rgb1=hexValues();
+           btn1.innerText=rgb1;
+           document.body.style.backgroundImage= `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+           copyCode.innerHTML= `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handleButton2=()=>{
+           rgb2=hexValues();
+           btn2.innerText=rgb2;
+           document.body.style.backgroundImage= `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+           copyCode.innerHTML= `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        btn1.addEventListener("click",handleButton1);
+        btn2.addEventListener("click",handleButton2);
+
+        heading.addEventListener("click", ()=>{
+            navigator.clipboard.writeText(copyCode.innerText);
+            alert("Copied To Clipboard");
+        });
+    </script>
+
+</body>
+</html>
